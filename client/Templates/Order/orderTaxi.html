@@ -1,0 +1,194 @@
+<template name="orderTaxi">
+	<div class="placer"></div>
+	<div class="containerr">
+
+
+		{{# autoForm id="TaxiSchema" type="insert" collection="Taxi_Orders" }}
+			<div class="roww">
+				<div class="coll spann_6">
+
+
+					{{> afQuickField name="place_to"}}
+					{{> afQuickField name="place_from"}}
+					{{> afQuickField name="room"}}
+					{{> afQuickField name="flight"}}
+					{{> afQuickField name="date"}}
+					{{> afQuickField name="time"}}
+					{{> afQuickField name="child_seat"}}
+					{{> afQuickField name="additional_info"}}
+				</div>
+				<div class="coll spann_2">
+					<h1 class="invisible">11</h1>
+				</div>
+				<div class="coll spann_6">
+
+					{{> afQuickField name="pax"}}
+					{{> afQuickField name="luggage"}}
+					{{> afQuickField name="animals"}}
+					{{> afQuickField name="car"}}
+					{{> afQuickField name="price"}}
+					{{> afQuickField name="additional_question"}}
+				</div>
+				<div class="coll spann_2">
+					<h1 class="invisible">11</h1>
+				</div>
+				<div class="coll spann_6">
+
+				</div>
+			</div>
+			<div class="roww">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+			</div>
+			{{/autoForm}}
+			<div class="roww">
+				<div class="coll spann_6">
+					<div class="qwrap">
+						{{#afModal collection="Places" operation="insert" title="Добавить новое место" prompt="Внесите данные" buttonContent="Добавить" buttonClasses="btn btn-success" }}
+							<div class="plus_class" id="new_place_1"></div>
+						{{/afModal}}
+						{{#afModal collection="Places" operation="insert" title="Добавить новое место" prompt="Внесите данные" buttonContent="Добавить" buttonClasses="btn btn-success" }}
+							<div class="plus_class" id="new_place_2"></div>
+						{{/afModal}}
+					</div>
+				</div>
+			</div>
+
+	</div>
+
+
+	<script>
+	$("input[name='pax']").blur(function()
+	{
+		Session.set('paxVar', $("input[name='pax']").val());
+	});
+	$("input[name='luggage']").blur(function()
+	{
+		Session.set('luggageVar', $("input[name='luggage']").val());
+	});
+
+	// &&&&&&&&&&&
+
+	$("select[data-schema-key='place_from']").change(function()
+	{
+		Session.set('place_from', $("select[data-schema-key='place_from']").val());
+	});
+	$("select[data-schema-key='place_to']").change(function()
+	{
+		Session.set('place_to', $("select[data-schema-key='place_to']").val());
+	});
+	$("select[data-schema-key='car']").change(function()
+	{
+		Session.set('car', $("select[data-schema-key='car']").val());
+	});
+
+	// &&&&&&&&&&&
+
+	$("input[name='price']").focus(function()
+	{
+		return $("input[name='price']").val(function()
+		{
+			var place_from = Session.get('place_from');
+			var place_to = Session.get('place_to');
+			var district_from_id = Places.findOne(
+			{
+				_id: place_from
+			}).district;
+
+			var district_to_id = Places.findOne(
+			{
+				_id: place_to
+			}).district;
+
+			var district_from = Districts.findOne(
+			{
+				_id: district_from_id
+			}).name;
+
+			var district_to = Districts.findOne(
+			{
+				_id: district_to_id
+			}).name;
+
+			var Price;
+
+			if ((Session.get('car')) === "sedan")
+			{
+				Price = Taxi_Routes.findOne(
+				{
+					district_from: district_from_id,
+					district_to: district_to_id
+				}).sedan_price;
+			}
+			else if ((Session.get('car')) === "minivan")
+			{
+				Price = Taxi_Routes.findOne(
+				{
+					district_from: district_from_id,
+					district_to: district_to_id
+				}).minivan_price;
+			}
+			else if ((Session.get('car')) === "minibus")
+			{
+				Price = Taxi_Routes.findOne(
+				{
+					district_from: district_from_id,
+					district_to: district_to_id
+				}).minibus_price;
+			}
+			else if ((Session.get('car')) === "minibus_1to4")
+			{
+				Price = Taxi_Routes.findOne(
+				{
+					district_from: district_from_id,
+					district_to: district_to_id
+				}).minibus_1to4_price;
+			}
+			else if ((Session.get('car')) === "minibus_5to8")
+			{
+				Price = Taxi_Routes.findOne(
+				{
+					district_from: district_from_id,
+					district_to: district_to_id
+				}).minibus_5to8_price;
+			};
+			return Price;
+		})
+	});
+
+	// &&&&&&&&&&&
+
+	$("input[name='room']").closest('div.form-group').hide();
+	$("input[name='flight']").closest('div.form-group').hide();
+
+	$("select[data-schema-key='place_from']").change(function()
+	{
+		var place_from = Session.get('place_from');
+
+		var place_type = Places.findOne(
+		{
+			_id: place_from
+		}).place_type;
+
+		if (place_type === "hotel")
+		{
+			$("input[name='room']").closest('div.form-group').show();
+		}
+		else
+		{
+			$("input[name='room']").closest('div.form-group').hide();
+		};
+		if (place_type === "airport")
+		{
+			$("input[name='flight']").closest('div.form-group').show();
+		}
+		else
+		{
+			$("input[name='flight']").closest('div.form-group').hide();
+		};
+	})
+	</script>
+
+</template>

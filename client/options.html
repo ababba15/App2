@@ -1,0 +1,19 @@
+<template name="options">
+	<div class="placer"></div>
+
+	<div class="containerr">
+		<div class="roww">
+			<div class="coll spann_8">
+				{{#autoForm id="options" type="update" collection="Options" doc=this._id resetOnSuccess=true}}
+					{{> afQuickField name="discount"}}
+					<div class="roww">
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">Добавить</button>
+							<button type="reset" class="btn btn-default">Сбросить</button>
+						</div>
+					</div>
+				{{/autoForm}}
+			</div>
+		</div>
+	</div>
+</template>

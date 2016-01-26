@@ -1,0 +1,160 @@
+<template name="addPlace">
+	<div class="placer"></div>
+
+	<div class="coll spann_10">
+		<button type="button" class="btn btn-blue btn-block show-loc">
+			<h3>Добавить локацию</h3>
+		</button>
+	</div>
+	<div class="coll spann_12">
+		<button type="button" class="btn btn-blue btn-block show-dis">
+			<h3>Добавить район</h3>
+		</button>
+	</div>
+	<div class="coll spann_10">
+		<button type="button" class="btn btn-blue btn-block show-pla">
+			<h3>Добавить место</h3>
+		</button>
+	</div>
+	<div class="containerr">
+		<div class="add-wrapper-addLocation">
+			{{#autoForm id="addLocation" type="insert" collection="Locations" }}
+				<div class="roww">
+					<div class="invisible coll spann_5">
+						<h1>1</h1></div>
+					<div class="coll spann_6">
+						{{> afQuickField name="name"}}
+						<button type="submit" class="btn btn-success">Добавить</button>
+					</div>
+					<div class="coll spann_16">
+						{{> reactiveTable id="locationsTable" settings=reactive_table_settings_location}}
+					</div>
+					<div class="invisible coll spann_5">
+						<h1>1</h1></div>
+				</div>
+			{{/autoForm}}
+		</div>
+		<div class="add-wrapper-addDistrict">
+			{{#autoForm id="addDistrict" type="insert" collection="Districts" resetOnSuccess=false }}
+				<div class="roww">
+					<div class="invisible coll spann_5">
+						<h1>1</h1></div>
+					<div class="coll spann_6">
+						{{> afQuickField name="location"}} {{> afQuickField name="name"}}
+						<button type="submit" class="btn btn-success">Добавить</button>
+					</div>
+					<div class="coll spann_16">
+						{{> reactiveTable id="districtsTable" settings=reactive_table_settings_district}}
+					</div>
+					<div class="invisible coll spann_5">
+						<h1>1</h1></div>
+				</div>
+			{{/autoForm}}
+		</div>
+		<div class="add-wrapper-addPlace">
+			{{#autoForm id="addPlace" type="insert" collection="Places" resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_1 invisible">
+						<h1>1</h1>
+					</div>
+					<div class="coll spann_6">
+						{{> afQuickField name="district"}}
+					</div>
+
+					<div class="coll spann_6">
+						{{> afQuickField name="name" autocomplete='off'}}
+					</div>
+					<div class="coll spann_6">
+						{{> afQuickField name="place_type"}}
+					</div>
+
+					<div class="coll spann_6">
+						{{> afQuickField name="from_center"}}
+					</div>
+					<div class="coll spann_1 invisible">
+						<h1>1</h1>
+					</div>
+				</div>
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+			<div class="roww">
+				<div class="coll spann_32">
+					{{> reactiveTable id="placesTable" settings=reactive_table_settings_place}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function()
+	{
+		$('.add-wrapper-addLocation').hide();
+		$('.add-wrapper-addDistrict').hide();
+		$('.add-wrapper-addPlace').hide();
+
+		$(".show-loc").click(function()
+		{
+			$(".add-wrapper-addLocation").toggle();
+			$('.add-wrapper-addDistrict').hide();
+			$('.add-wrapper-addPlace').hide();
+		});
+		$(".show-dis").click(function()
+		{
+			$(".add-wrapper-addDistrict").toggle();
+			$('.add-wrapper-addLocation').hide();
+			$('.add-wrapper-addPlace').hide();
+		});
+		$(".show-pla").click(function()
+		{
+			$(".add-wrapper-addPlace").toggle();
+			$('.add-wrapper-addDistrict').hide();
+			$('.add-wrapper-addLocation').hide();
+		});
+	});
+	</script>
+</template>
+
+<template name="Location_updateModal">
+
+	{{#afModal collection="Locations" doc=_id operation="update" title="Форма обновления существующего локации" prompt="Внесите свежие данные" buttonContent="Обновить локацию" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+</template>
+
+<template name="Location_removeModal">
+	{{#afModal collection="Locations" doc=_id operation="remove" title="Удаление существующей локации" prompt="Вы уверены, что хотите удалить эту локацию?" buttonContent="Удалить локацию" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+</template>
+
+
+<template name="District_updateModal">
+
+	{{#afModal collection="Districts" doc=_id operation="update" title="Форма обновления существующего района" prompt="Внесите свежие данные" buttonContent="Обновить район" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+</template>
+
+<template name="District_removeModal">
+	{{#afModal collection="Districts" doc=_id operation="remove" title="Удаление существующего района" prompt="Вы уверены, что хотите удалить это район?" buttonContent="Удалить район" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+</template>
+
+
+<template name="Place_updateModal">
+
+	{{#afModal collection="Places" doc=_id operation="update" title="Форма обновления существующего места" prompt="Внесите свежие данные" buttonContent="Обновить место" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+</template>
+
+<template name="Place_removeModal">
+	{{#afModal collection="Places" doc=_id operation="remove" title="Удаление существующего места" prompt="Вы уверены, что хотите удалить это место?" buttonContent="Удалить место" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+</template>

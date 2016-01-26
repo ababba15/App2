@@ -1,0 +1,142 @@
+.containerr {
+    margin: 0 auto !important;
+    width: 95%;
+    padding-top: 20px;
+}
+
+.containerr:after,
+.roww:after,
+.coll:after,
+.clr:after,
+.group:after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
+}
+
+.roww {
+    padding-bottom: 0 !important;
+    margin-left: -10px;
+}
+
+.coll {
+    border: 0px solid rgba(0, 0, 0, 0);
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding-box !important;
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box !important;
+    border-left-width: 10px;
+    padding: 0 0px;
+}
+
+@media ( min-width: 768px) {
+    .gutters .coll {
+        margin-left: 2% !important;
+    }
+    .gutters .coll:first-child {
+        margin-left: 0 !important;
+    }
+}
+
+@media ( min-width: 768px) {
+    .spann_1 {
+        width: 3.125%;
+    }
+    .spann_2 {
+        width: 6.25%;
+    }
+    .spann_3 {
+        width: 9.375%;
+    }
+    .spann_4 {
+        width: 12.5%;
+    }
+    .spann_5 {
+        width: 15.625%;
+    }
+    .spann_6 {
+        width: 18.75%;
+    }
+    .spann_7 {
+        width: 21.875%;
+    }
+    .spann_8 {
+        width: 25.0%;
+    }
+    .spann_9 {
+        width: 28.125%;
+    }
+    .spann_10 {
+        width: 31.25%;
+    }
+    .spann_11 {
+        width: 34.375%;
+    }
+    .spann_12 {
+        width: 37.5%;
+    }
+    .spann_13 {
+        width: 40.625%;
+    }
+    .spann_14 {
+        width: 43.75%;
+    }
+    .spann_15 {
+        width: 46.875%;
+    }
+    .spann_16 {
+        width: 50.0%;
+    }
+    .spann_17 {
+        width: 53.125%;
+    }
+    .spann_18 {
+        width: 56.25%;
+    }
+    .spann_19 {
+        width: 59.375%;
+    }
+    .spann_20 {
+        width: 62.5%;
+    }
+    .spann_21 {
+        width: 65.625%;
+    }
+    .spann_22 {
+        width: 68.75%;
+    }
+    .spann_23 {
+        width: 71.875%;
+    }
+    .spann_24 {
+        width: 75.0%;
+    }
+    .spann_25 {
+        width: 78.125%;
+    }
+    .spann_26 {
+        width: 81.25%;
+    }
+    .spann_27 {
+        width: 84.375%;
+    }
+    .spann_28 {
+        width: 87.5%;
+    }
+    .spann_29 {
+        width: 90.625%;
+    }
+    .spann_30 {
+        width: 93.75%;
+    }
+    .spann_31 {
+        width: 96.875%;
+    }
+    .spann_32 {
+        margin-left: 0;
+        width: 100%;
+    }
+}

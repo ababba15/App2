@@ -1,0 +1,82 @@
+<template name="addTaxi_Route">
+	<div class="placer"></div>
+	<button type="button" class="btn btn-blue btn-block show"><h3>Добавить новый маршрут такси</h3></button>
+	<div class="containerr">
+		<div class="add-wrapper">
+			{{#autoForm id="addTaxi_Route" type="insert" collection="Taxi_Routes"  resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="provider"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="district_from"}}
+							{{> afQuickField name="district_to"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="sedan_price"}}
+							{{> afQuickField name="minivan_price"}}
+							{{> afQuickField name="minibus_price"}}
+							{{> afQuickField name="minibus_1to4_price"}}
+							{{> afQuickField name="minibus_5to8_price"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="sedan_price_net"}}
+							{{> afQuickField name="minivan_price_net"}}
+							{{> afQuickField name="minibus_price_net"}}
+							{{> afQuickField name="minibus_1to4_price_net"}}
+							{{> afQuickField name="minibus_5to8_price_net"}}
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+		</div>
+		<div class="roww">
+			<div class="coll spann_32">
+				{{> reactiveTable id="Taxi_RoutesTable" settings=reactive_table_settings_Taxi_Route}}
+			</div>
+		</div>
+	</div>
+	<script>
+
+	$(document).ready(function()
+	{
+		$('.add-wrapper').hide();
+		$(".show").click(function()
+		{
+			$(".add-wrapper").toggle();
+		});
+	});
+	</script>
+</template>
+
+<template name="Taxi_Route_updateModal">
+
+	{{#afModal collection="Taxi_Routes" doc=_id operation="update" title="Форма обновления существующего маршрута" prompt="Внесите свежие данные" buttonContent="Обновить маршрут" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<template name="Taxi_Route_removeModal">
+	{{#afModal collection="Taxi_Routes" doc=_id operation="remove" title="Удаление существующего маршрута" prompt="Вы уверены, что хотите удалить этот маршрут?" buttonContent="Удалить маршрут" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>

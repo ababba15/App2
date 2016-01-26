@@ -1,0 +1,105 @@
+<template name="addTour">
+	<div class="placer"></div>
+	<button type="button" class="btn btn-blue btn-block show"><h3>Добавить новую экскурсию/шоу</h3></button>
+	<div class="containerr">
+		<div class="add-wrapper">
+			{{#autoForm id="addTour" type="insert" collection="Tours"  resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="provider"}}
+							{{> afQuickField name="name"}}
+							{{> afQuickField name="program"}}
+							{{> afQuickField name="service"}}
+							{{> afQuickField name="additional_info"}}
+							{{> afQuickField name="for_tourist_info"}}
+							{{> afQuickField name="website_link"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="location"}}
+							{{> afQuickField name="district"}}
+							{{> afQuickField name="variants"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="price_adult"}}
+							{{> afQuickField name="price_child"}}
+							{{> afQuickField name="price_group"}}
+							{{> afQuickField name="max_group"}}
+							{{> afQuickField name="guide"}}
+							{{> afQuickField name="guide_speaks"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="price_adult_net"}}
+							{{> afQuickField name="price_child_net"}}
+							{{> afQuickField name="price_group_net"}}
+							{{> afQuickField name="pre_pay"}}
+							{{> afQuickField name="pre_pay_system"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="discount"}}
+							{{> afQuickField name="off_weekdays"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="work_time"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="district_pickup"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="district_overpay"}}
+						</div>
+					</div>
+				</div>
+
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+		</div>
+		<div class="roww">
+			<div class="coll spann_32">
+				{{> reactiveTable id="ToursTable" settings=reactive_table_settings_Tour}}
+			</div>
+		</div>
+	</div>
+	<script>
+
+	$(document).ready(function()
+	{
+		$('.add-wrapper').hide();
+		$(".show").click(function()
+		{
+			$(".add-wrapper").toggle();
+		});
+	});
+	</script>
+</template>
+
+<template name="Tour_updateModal">
+
+	{{#afModal collection="Tours" doc=_id operation="update" title="Форма обновления существующей экскурсии/шоу" prompt="Внесите свежие данные" buttonContent="Обновить экскурсию/шоу" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<template name="Tour_removeModal">
+	{{#afModal collection="Tours" doc=_id operation="remove" title="Удаление существующей экскурсии/шоу" prompt="Вы уверены, что хотите удалить эту экскурсию/шоу?" buttonContent="Удалить экскурсию/шоу" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>

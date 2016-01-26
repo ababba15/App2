@@ -1,0 +1,103 @@
+<template name="addProvider">
+<div class="placer"></div>
+<button type="button" class="btn btn-blue btn-block show"><h3>Добавить нового организатора</h3></button>
+	<div class="containerr">
+		<div class="add-wrapper">
+			{{#autoForm id="addProvider" type="insert" collection="Providers"  resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_8">
+						<div class="coll spann_32">
+							{{> afQuickField name="name"}}
+							{{> afQuickField name="off_name"}}
+							{{> afQuickField name="service"}}
+							<hr>
+							{{> afQuickField name="provider_place"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="booking_time_from"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="booking_time_to"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="night_time_from"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="night_time_to"}}
+						</div>
+						<div class="coll spann_32">
+							{{> afQuickField name="night_tax"}}
+							{{> afQuickField name="child_seat_tax"}}
+							{{> afQuickField name="animal_tax"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+							{{> afQuickField name="provider_lineID"}}
+							{{> afQuickField name="provider_tel"}}
+							{{> afQuickField name="provider_email"}}
+							{{> afQuickField name="provider_info"}}
+
+					</div>
+
+					<div class="coll spann_8">
+							{{> afQuickField name="provider_invoice_lineID"}}
+							{{> afQuickField name="provider_invoice_tel"}}
+							{{> afQuickField name="provider_invoice_email"}}
+							{{> afQuickField name="provider_invoice_requisites"}}
+							{{> afQuickField name="provider_invoice_person"}}
+							{{> afQuickField name="provider_invoice_email_template"}}
+							{{> afQuickField name="provider_invoice_info"}}
+					</div>
+				</div>
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+		</div>
+		<div class="roww">
+			<div class="coll spann_32">
+				{{> reactiveTable id="providersTable" settings=reactive_table_settings_provider}}
+			</div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function(){
+	$('.add-wrapper').hide();
+    $(".show").click(function(){
+			$(".add-wrapper").toggle();
+    	});
+	});
+	</script>
+</template>
+
+<template name="Provider_updateModal">
+
+	{{#afModal collection="Providers" doc=_id operation="update" title="Форма обновления существующего организатора" prompt="Внесите свежие данные" buttonContent="Обновить организатора" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<template name="Provider_removeModal">
+	{{#afModal collection="Providers" doc=_id operation="remove" title="Удаление существующего организатора" prompt="Вы уверены, что хотите удалить это организатора?" buttonContent="Удалить организатора" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<!--
+<template name="insert">
+{{#afModal class="btn btn-primary" collection="Places" operation="insert"}}
+  Add ............
+{{/afModal}}
+</template>
+-->

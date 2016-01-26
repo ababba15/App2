@@ -1,0 +1,64 @@
+<template name="addService">
+<div class="placer"></div>
+<button type="button" class="btn btn-blue btn-block show"><h3>Добавить новый сервис</h3></button>
+	<div class="containerr">
+		<div class="add-wrapper">
+			{{#autoForm id="addService" type="insert" collection="Services"  resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_8">
+						<div class="coll spann_32">
+							{{> afQuickField name="name"}}
+							{{> afQuickField name="currency"}}
+							{{> afQuickField name="url"}}
+						</div>
+					</div>
+
+				</div>
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+		</div>
+		<div class="roww">
+			<div class="coll spann_32">
+				{{> reactiveTable id="ServicesTable" settings=reactive_table_settings_Service}}
+			</div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function(){
+	$('.add-wrapper').hide();
+    $(".show").click(function(){
+			$(".add-wrapper").toggle();
+    	});
+	});
+	</script>
+</template>
+
+<template name="Service_updateModal">
+
+	{{#afModal collection="Services" doc=_id operation="update" title="Форма обновления существующего сервиса" prompt="Внесите свежие данные" buttonContent="Обновить сервис" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<template name="Service_removeModal">
+	{{#afModal collection="Services" doc=_id operation="remove" title="Удаление существующего сервиса" prompt="Вы уверены, что хотите удалить этот сервис?" buttonContent="Удалить сервис" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<!--
+<template name="insert">
+{{#afModal class="btn btn-primary" collection="Places" operation="insert"}}
+  Add ............
+{{/afModal}}
+</template>
+-->

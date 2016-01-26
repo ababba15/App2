@@ -1,0 +1,87 @@
+<template name="addVisa">
+	<div class="placer"></div>
+	<button type="button" class="btn btn-blue btn-block show"><h3>Добавить новую визовую услугу</h3></button>
+	<div class="containerr">
+		<div class="add-wrapper">
+			{{#autoForm id="addVisa" type="insert" collection="Visas"  resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="provider"}}
+							{{> afQuickField name="visa_type"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="location"}}
+							{{> afQuickField name="service"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="time"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="when_avaible"}}
+							{{#if afFieldValueIs name="when_avaible" value="week_days" }}
+								{{> afQuickField name="off_weekdays"}}
+							{{/if}}
+							{{#if afFieldValueIs name="when_avaible" value="exact_dates" }}
+								{{> afQuickField name="dates" class="date"}}
+							{{/if}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						{{> afQuickField name="prices"}}
+					</div>
+
+					<div class="coll spann_8">
+						{{> afQuickField name="additional_info"}}
+						{{> afQuickField name="for_tourist_info"}}
+						{{> afQuickField name="website_link"}}
+					</div>
+				</div>
+
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+		</div>
+		<div class="roww">
+			<div class="coll spann_32">
+				{{> reactiveTable id="VisasTable" settings=reactive_table_settings_Visa showColumnToggles=false}}
+			</div>
+		</div>
+	</div>
+	<script>
+
+	$(document).ready(function()
+	{
+		$('.add-wrapper').hide();
+		$(".show").click(function()
+		{
+			$(".add-wrapper").toggle();
+		});
+	});
+	</script>
+</template>
+
+<template name="Visa_updateModal">
+
+	{{#afModal collection="Visas" doc=_id operation="update" title="Форма обновления существующей визовой услуги" prompt="Внесите свежие данные" buttonContent="Обновить визовую услугу" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<template name="Visa_removeModal">
+	{{#afModal collection="Visas" doc=_id operation="remove" title="Удаление существующей визовой услуги" prompt="Вы уверены, что хотите удалить эту визовую услугу?" buttonContent="Удалить визовую услугу" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>

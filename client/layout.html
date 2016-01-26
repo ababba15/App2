@@ -1,0 +1,17 @@
+<template name="layout">
+
+	{{> loading}} {{> nav}}
+
+	<div class="roww">
+		<div class="coll spann_26">
+			{{> yield}}
+		</div>
+		<div class="coll spann_6">
+			<div class="placer"></div>
+			{{> sideBar}}
+		</div>
+	</div>
+
+	{{> autoformModals}} {{> footer}}
+
+</template>

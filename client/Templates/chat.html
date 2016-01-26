@@ -1,0 +1,33 @@
+<template name="messages">
+    {{#each messages}}
+    <span class="chatname">{{name}}:</span> <span class="message">{{message}}</span>
+    <br> {{/each}}
+</template>
+
+<template name="input">
+    <input type="text" id="chat_input">
+</template>
+
+<template name="chat">
+    <div id="down"></div>
+    <div id="messages_block">
+        {{> messages }}
+    </div>
+    {{> input }}
+    <script>
+    $('div#down').hide(100);
+    var elem = document.getElementById('messages_block');
+
+    $('div#down').click(function() {
+        elem.scrollTop = elem.scrollHeight;
+    });
+
+    $(elem).scroll(function() {
+        if ((elem.scrollTop + elem.offsetHeight) <= elem.scrollHeight - 50) {
+            $('div#down').show(100);
+        } else {
+            $('div#down').hide(100);
+        }
+    });
+    </script>
+</template>

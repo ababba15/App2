@@ -1,0 +1,183 @@
+<template name="addTransfer">
+    <div class="placer"></div>
+    <button type="button" class="btn btn-blue btn-block show">
+        <h3>Добавить новый трансфер</h3></button>
+    <div class="containerr">
+        <div class="add-wrapper">
+            {{#autoForm id="addTransfer" type="insert" collection="Transfers" resetOnSuccess=false}}
+            <div class="roww">
+                <div class="coll spann_8">
+                    <div class="coll spann_16">
+
+                        {{> afQuickField name="provider"}}
+                        {{> afQuickField name="service"}}
+                        {{> afQuickField name="direction"}}
+                        {{> afQuickField name="additional_info"}}
+                        {{> afQuickField name="for_tourist_info"}}
+                        {{> afQuickField name="website_link"}}
+                    </div>
+                    <div class="coll spann_16">
+                    </div>
+                </div>
+                <div class="coll spann_8">
+                    <h3 class="text-center">Цены в один конец</h3>
+                    <div class="coll spann_16">
+
+                        {{> afQuickField name="prices_one_direction.minibus"}}
+                        <hr>
+                        {{> afQuickField name="prices_one_direction.minibus_boat"}}
+                        <hr>
+                        {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_adult"}}
+                        {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_adult_net"}}
+                    </div>
+                    <div class="coll spann_16">
+
+                        {{> afQuickField name="prices_one_direction.minibus_speedboat"}}
+                        <hr>
+                        {{> afQuickField name="prices_one_direction.minibus_speedboat_taxi"}}
+                        <hr>
+                        {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_child"}}
+                        {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_child_net"}}
+                    </div>
+                </div>
+                <div class="coll spann_8">
+                    <h3 class="text-center">Цены в оба конца</h3>
+                    <div class="coll spann_16">
+
+                        {{> afQuickField name="prices_two_directions.minibus"}}
+                        <hr>
+                        {{> afQuickField name="prices_two_directions.minibus_boat"}}
+                        <hr>
+                        {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_adult"}}
+                        {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_adult_net"}}
+                    </div>
+                    <div class="coll spann_16">
+
+                        {{> afQuickField name="prices_two_directions.minibus_speedboat"}}
+                        <hr>
+                        {{> afQuickField name="prices_two_directions.minibus_speedboat_taxi"}}
+                        <hr>
+                        {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_child"}}
+                        {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_child_net"}}
+                    </div>
+                </div>
+                <div class="coll spann_8">
+                    <div class="coll spann_16 invisible">
+                        <h1>1</h1>
+                    </div>
+                    <div class="coll spann_16">
+
+                        {{> afQuickField name="off_weekdays"}}
+                        {{> afQuickField name="district_overpay"}}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Добавить</button>
+                <button type="reset" class="btn btn-default">Сбросить</button>
+            </div>
+            <hr> {{/autoForm}}
+        </div>
+        <div class="roww">
+            <div class="coll spann_32">
+
+                {{> reactiveTable id="TransfersTable" settings=reactive_table_settings_Transfer}}
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $('.add-wrapper').hide();
+        $(".show").click(function() {
+            $(".add-wrapper").toggle();
+        });
+    });
+    </script>
+</template>
+<template name="Transfer_updateModal">
+    {{#afModal cmTp="ownModal" collection="Transfers" doc=_id operation="update" title="Форма обновления существующего трансфера" prompt="Внесите свежие данные" buttonContent="Обновить трансфер" buttonClasses="btn btn-success" }}
+    <div class="update_class"></div>
+    {{/afModal}}
+    <script>
+    </script>
+</template>
+<template name="Transfer_removeModal">
+    {{#afModal collection="Transfers" doc=_id operation="remove" title="Удаление существующего трансфера" prompt="Вы уверены, что хотите удалить этот трансфер?" buttonContent="Удалить трансфер" buttonClasses="btn btn-danger" }}
+    <div class="remove_class"></div>
+    {{/afModal}}
+    <script>
+    </script>
+</template>
+<template name="ownModal">
+
+    {{> afQuickField name="provider" class="form-control"}}
+    {{> afQuickField name="service" class="form-control"}}
+    {{> afQuickField name="direction" class="form-control"}}
+    {{> afQuickField name="additional_info" class="form-control"}}
+    <div class="coll spann_16">
+        <h3 class="text-center">Цены в один конец</h3>
+        <div class="coll spann_16">
+
+            {{> afQuickField name="prices_one_direction.minibus.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus.price_child" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus.price_child_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat.price_child" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat.price_child_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_child" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_boat_minibus.price_child_net" class="form-control"}}
+        </div>
+        <div class="coll spann_16">
+
+            {{> afQuickField name="prices_one_direction.minibus_speedboat.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat.price_child" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat.price_child_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat_taxi.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat_taxi.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat_taxi.price_child" class="form-control"}}
+            {{> afQuickField name="prices_one_direction.minibus_speedboat_taxi.price_child_net" class="form-control"}}
+        </div>
+    </div>
+    <div class="coll spann_16">
+        <h3 class="text-center">Цены в оба конца</h3>
+        <div class="coll spann_16">
+
+            {{> afQuickField name="prices_two_directions.minibus.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus.price_child" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus.price_child_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat.price_child" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat.price_child_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_child" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_child_net" class="form-control"}}
+        </div>
+        <div class="coll spann_16">
+
+            {{> afQuickField name="prices_two_directions.minibus_speedboat.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat.price_child" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat.price_child_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat_taxi.price_adult" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat_taxi.price_adult_net" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat_taxi.price_child" class="form-control"}}
+            {{> afQuickField name="prices_two_directions.minibus_speedboat_taxi.price_child_net" class="form-control"}}
+        </div>
+    </div>
+
+    {{> afQuickField name="off_weekdays"}}
+    {{> afQuickField name="district_overpay"}}
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Обновить трансфер</button>
+        <button type="reset" class="btn btn-default">Исходные данные</button>
+    </div>
+</template>

@@ -1,0 +1,50 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+session                 # Client-side reactive dictionary for your app
+tracker                 # Meteor's client-side reactive programming library
+
+standard-minifiers      # JS/CSS minifiers run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
+
+iron:router
+iron:layout
+momentjs:moment
+momentjs:twix
+reactive-var
+dburles:collection-helpers
+accounts-base
+accounts-password
+ejson
+velocity:core
+jquery
+service-configuration
+reactive-dict
+check
+rzymek:moment-locale-ru
+anti:i18n
+accounts-ui
+mrt:require
+app:roles
+my:reactive-table
+meteor-accounts-admin-app
+aldeed:collection2
+ongoworks:security
+pahans:reactive-modal
+aldeed:autoform
+tsega:bootstrap3-datetimepicker
+mrt:jquery-easing
+app:universe-select
+app:autoform-modals
+pcel:loading
+mrt:bootstrap-switch
+mixmax:underscore-updates
+easy:search

@@ -1,0 +1,94 @@
+<template name="addSpa">
+	<div class="placer"></div>
+	<button type="button" class="btn btn-blue btn-block show"><h3>Добавить новую SPA-услугу</h3></button>
+	<div class="containerr">
+		<div class="add-wrapper">
+			{{#autoForm id="addSpa" type="insert" collection="Spas"  resetOnSuccess=false}}
+				<div class="roww">
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="provider"}}
+							{{> afQuickField name="spa_id"}}
+							{{> afQuickField name="service"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="back_transfer_option"}}
+							{{#if afFieldValueIs name="back_transfer_option" value="payed" }}
+								{{> afQuickField name="transfer_price_one_direction"}}
+								{{> afQuickField name="transfer_price_two_directions"}}
+							{{/if}}
+							{{#if afFieldValueIs name="back_transfer_option" value="transfer_exeptional" }}
+								{{> afQuickField name="transfer_exeptional"}}
+							{{/if}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="work_time_from"}}
+							{{> afQuickField name="work_time_to"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="transfer_time_from"}}
+							{{> afQuickField name="transfer_time_to"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+						<div class="coll spann_16">
+							{{> afQuickField name="off_weekdays"}}
+							{{> afQuickField name="additional_info"}}
+							{{> afQuickField name="for_tourist_info"}}
+							{{> afQuickField name="website_link"}}
+						</div>
+						<div class="coll spann_16">
+							{{> afQuickField name="district_overpay"}}
+						</div>
+					</div>
+
+					<div class="coll spann_8">
+
+					</div>
+				</div>
+				<hr>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Добавить</button>
+					<button type="reset" class="btn btn-default">Сбросить</button>
+				</div>
+				<hr>
+			{{/autoForm}}
+		</div>
+		<div class="roww">
+			<div class="coll spann_32">
+				{{> reactiveTable id="SpasTable" settings=reactive_table_settings_Spa}}
+			</div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function()
+	{
+		$('.add-wrapper').hide();
+		$(".show").click(function()
+		{
+			$(".add-wrapper").toggle();
+		});
+	});
+	</script>
+</template>
+
+<template name="Spa_updateModal">
+
+	{{#afModal collection="Spas" doc=_id operation="update" title="Форма обновления существующего спа" prompt="Внесите свежие данные" buttonContent="Обновить спа" buttonClasses="btn btn-success" }}
+		<div class="update_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>
+
+<template name="Spa_removeModal">
+	{{#afModal collection="Spas" doc=_id operation="remove" title="Удаление существующего спа" prompt="Вы уверены, что хотите удалить этот спа?" buttonContent="Удалить спа" buttonClasses="btn btn-danger" }}
+		<div class="remove_class"></div>
+	{{/afModal}}
+	<script>
+	</script>
+</template>

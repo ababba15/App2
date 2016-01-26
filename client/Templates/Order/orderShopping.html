@@ -1,0 +1,73 @@
+<template name="orderShopping">
+    <div class="placer"></div>
+    <div class="containerr">
+        {{# autoForm id="ShoppingSchema" type="insert" collection="Shopping_Orders" }}
+        <div class="roww">
+            <div class="coll spann_6">
+                {{> afQuickField name="shopping_place_to"}} {{> afQuickField name="place_from"}} {{> afQuickField name="room"}} {{> afQuickField name="date"}} {{> afQuickField name="time"}} {{> afQuickField name="additional_info"}}
+            </div>
+            <div class="coll spann_2">
+                <h1 class="invisible">11</h1>
+            </div>
+            <div class="coll spann_6">
+                {{> afQuickField name="pax"}} {{> afQuickField name="kids"}} {{> afQuickField name="price"}} {{> afQuickField name="additional_question"}}
+            </div>
+            <div class="coll spann_2">
+                <h1 class="invisible">11</h1>
+            </div>
+            <div class="coll spann_6">
+            </div>
+        </div>
+        <div class="roww">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Добавить</button>
+                <button type="reset" class="btn btn-default">Сбросить</button>
+            </div>
+        </div>
+        {{/autoForm}}
+        <div class="roww">
+            <div class="coll spann_6">
+                <div class="qwrap">
+                    {{#afModal collection="Places" operation="insert" title="Добавить новое место" prompt="Внесите данные" buttonContent="Добавить" buttonClasses="btn btn-success" }}
+                    <div class="plus_class" id="new_place_2"></div>
+                    {{/afModal}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+
+
+    $("input[name='room']").closest('div.form-group').hide();
+
+    $("input[name='price']").focus(function() {
+        return $("input[name='price']").val(function() {
+            var place_from = Session.get('place_from');
+            var place_to = Session.get('place_to');
+            var district_from_id = Places.findOne({
+                _id: place_from
+            });
+
+            var shopping_id = Shoppings.findOne({
+                shop_id: place_to
+            })._id;
+
+            console.log(shopping_id);
+
+            var district_from = Districts.findOne({
+                _id: district_from_id
+            }).name;
+
+            var district_to = Districts.findOne({
+                _id: district_to_id
+            }).name;
+
+            var Price;
+
+            return Price;
+        })
+    });
+    </script>
+</template>
