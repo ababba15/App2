@@ -10,19 +10,23 @@ Template.messages.helpers({
     }
 });
 
-
+Meteor.subscribe("User");
 
 Template.input.events = {
     'keypress input#chat_input': function(event) {
         if (event.which == 13) {
-            var name;
-            if (Meteor.user().profile.name)
+            name = '';
+            if (Meteor.user().profile.name) {
                 name = Meteor.user().profile.name;
-            else if (Meteor.user())
+            } else if (Meteor.user()) {
                 name = Meteor.user().emails[0].address;
-            else
+            } else if (!Meteor.user()){
                 name = 'Гость';
+            };
             var chat_input = document.getElementById('chat_input');
+            if (name === undefined) {
+                console.log('Name is undefined..')
+            };
             if (chat_input.value != '') {
                 Messages.insert({
                     name: name,
@@ -55,9 +59,9 @@ Template.input.events = {
     }
 }
 
-window.setInterval(function() {
-    var elem = document.getElementById('messages_block');
-    if (!elem.matches(':hover')) {
-        elem.scrollTop = elem.scrollHeight;
-    }
-}, 30000);
+// window.setInterval(function() {
+//     var elem = document.getElementById('messages_block');
+//     if (!elem.matches(':hover')) {
+//         elem.scrollTop = elem.scrollHeight;
+//     }
+// }, 30000);

@@ -21,48 +21,48 @@ Template.orderSpa.events({
 
     'change select[data-schema-key="spa_place_to"]': function(event) {
 
-        $('.date').data("DateTimePicker").destroy();
-        $('.time').data("DateTimePicker").destroy();
+        if ($("select[data-schema-key='spa_place_to']").val()) {
 
-        Session.set('spa_place_to', $("select[data-schema-key='spa_place_to']").val());
-        curr_spa_id = Session.get('spa_place_to');
+            $('.date').data("DateTimePicker").destroy();
+            $('.time').data("DateTimePicker").destroy();
 
-        _minDate = Spas.findOne({
-            spa_id: curr_spa_id
-        }).work_time_from;
+            Session.set('spa_place_to', $("select[data-schema-key='spa_place_to']").val());
+            curr_spa_id = Session.get('spa_place_to');
 
-        _maxDate = Spas.findOne({
-            spa_id: curr_spa_id
-        }).work_time_to;
+            _minDate = Spas.findOne({
+                _id: curr_spa_id
+            }).work_time_from;
 
-        _weekDays = Spas.findOne({
-            spa_id: curr_spa_id
-        }).off_weekdays;
+            _maxDate = Spas.findOne({
+                _id: curr_spa_id
+            }).work_time_to;
 
-        var result = [];
-        for (var i in _weekDays) {
-            result.push(week_arr.indexOf(_weekDays[i]))
-        }
+            _weekDays = Spas.findOne({
+                _id: curr_spa_id
+            }).off_weekdays;
 
+            var result = [];
+            for (var i in _weekDays) {
+                result.push(week_arr.indexOf(_weekDays[i]))
+            };
 
+            $('.date').datetimepicker({
+                daysOfWeekDisabled: result,
+                format: "LL"
+            });
 
-        $('.date').datetimepicker({
-            daysOfWeekDisabled: result,
-            format: "LL"
-        });
+            minDate.h = _minDate.split(':')[0];
+            minDate.m = _minDate.split(':')[1];
 
+            maxDate.h = _maxDate.split(':')[0];
+            maxDate.m = _maxDate.split(':')[1];
 
-        minDate.h = _minDate.split(':')[0];
-        minDate.m = _minDate.split(':')[1];
-
-        maxDate.h = _maxDate.split(':')[0];
-        maxDate.m = _maxDate.split(':')[1];
-
-        $('.time').datetimepicker({
-            format: "HH:mm",
-            minDate: moment(minDate),
-            maxDate: moment(maxDate)
-        });
+            $('.time').datetimepicker({
+                format: "HH:mm",
+                minDate: moment(minDate),
+                maxDate: moment(maxDate)
+            });
+        };
 
     },
 

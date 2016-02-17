@@ -465,10 +465,6 @@ div#new_place_2 {
     left: 16.3%;
 }
 
-.panel-default > .panel-heading {
-    display: none;
-}
-
 .list-group-item.autoform-array-item .autoform-add-item {
     margin-right: 5px;
 }
@@ -613,7 +609,6 @@ div#down {
     background: #ddd;
 }
 
-
 .clearfix:after {
     content: "";
     display: table;
@@ -621,29 +616,124 @@ div#down {
 }
 
 a#ta1 {
-    background-color: #8BC34A;
+    background-color: #F2F2F2;
 }
 
-a#ta1 {
-    background-color: #58E7D1;
+a#ta2 {
+    background-color: #F2F2F2;
 }
 
 a#ta3 {
-    background-color: #A5BAFF;
+    background-color: #F2F2F2;
 }
 
 a#ta4 {
-    background-color: #FF91D9;
+    background-color: #F2F2F2;
 }
 
 a#ta5 {
-    background-color: #FFBA9F;
+    background-color: #F2F2F2;
 }
 
 a#ta6 {
-    background-color: #D9CA4A;
+    background-color: #F2F2F2;
+}
+
+a#ta1:hover {
+    background-color: #D0D0D0;
+}
+
+a#ta2:hover {
+    background-color: #D0D0D0;
+}
+
+a#ta3:hover {
+    background-color: #D0D0D0;
+}
+
+a#ta4:hover {
+    background-color: #D0D0D0;
+}
+
+a#ta5:hover {
+    background-color: #D0D0D0;
+}
+
+a#ta6:hover {
+    background-color: #D0D0D0;
 }
 
 .order:hover {
     box-shadow: 0 3px 17px rgba(0, 0, 0, 0.5);
+}
+
+.order_lead {
+    color: #000;
+    background-color: #FFFFFF;
+}
+
+.order_recall {
+    color: #000;
+    background-color: #FFF38E;
+}
+
+.order_waiting {
+    color: #000;
+    background-color: #FFD3C5;
+}
+
+.order_sent {
+    color: #000;
+    background-color: #B0FFB4;
+}
+
+.fade.off {
+    opacity: 0;
+}
+
+.fade {
+    opacity: 1;
+    transition: opacity 200ms ease;
+}
+
+.inform {
+    padding: 23px;
+    background-color: #444444;
+    color: #C3C3C3;
+    font-size: 17px;
+    height: 100%;
+    box-shadow: 0px 4px 12px #BCBCBC;
+    border-radius: 4px;
+}
+
+.order_string {
+    padding: 12px;
+    border-radius: 4px;
+    margin: 11px;
+    box-shadow: 1px -4px 19px #636363;
+    font-size: 1.2em;
+    color: #000000;
+    background-color: #FFF8E1;
+    border-top-color: #9E9E9E;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: #9E9E9E;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: #9E9E9E;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #9E9E9E;
+    border-left-style: solid;
+    border-left-width: 1px !important;
+    min-height: 75px;
+}
+
+.accordion-title {
+    background-color: #E4E4E4;
+    padding: 7px;
+    margin: 12px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: black;
 }

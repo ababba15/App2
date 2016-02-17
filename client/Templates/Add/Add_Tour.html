@@ -5,7 +5,7 @@
 		<div class="add-wrapper">
 			{{#autoForm id="addTour" type="insert" collection="Tours"  resetOnSuccess=false}}
 				<div class="roww">
-					<div class="coll spann_8">
+					<div class="coll spann_16">
 						<div class="coll spann_16">
 							{{> afQuickField name="provider"}}
 							{{> afQuickField name="name"}}
@@ -14,47 +14,45 @@
 							{{> afQuickField name="additional_info"}}
 							{{> afQuickField name="for_tourist_info"}}
 							{{> afQuickField name="website_link"}}
-						</div>
-						<div class="coll spann_16">
-							{{> afQuickField name="location"}}
 							{{> afQuickField name="district"}}
-							{{> afQuickField name="variants"}}
+						</div>
+
+						<div class="coll spann_16">
+							{{> afQuickField name="discount"}}
+							{{> afQuickField name="off_weekdays"}}
+							{{> afQuickField name="guide"}}
+							{{> afQuickField name="guide_speaks"}}
+							{{> afQuickField name="pre_pay"}}
+							{{> afQuickField name="pre_pay_system"}}
+							{{> afQuickField name="max_group"}}
 						</div>
 					</div>
 
-					<div class="coll spann_8">
+					<div class="coll spann_16">
 						<div class="coll spann_16">
 							{{> afQuickField name="price_adult"}}
 							{{> afQuickField name="price_child"}}
 							{{> afQuickField name="price_group"}}
-							{{> afQuickField name="max_group"}}
-							{{> afQuickField name="guide"}}
-							{{> afQuickField name="guide_speaks"}}
 						</div>
 						<div class="coll spann_16">
 							{{> afQuickField name="price_adult_net"}}
 							{{> afQuickField name="price_child_net"}}
 							{{> afQuickField name="price_group_net"}}
-							{{> afQuickField name="pre_pay"}}
-							{{> afQuickField name="pre_pay_system"}}
 						</div>
 					</div>
 
-					<div class="coll spann_8">
-						<div class="coll spann_16">
-							{{> afQuickField name="discount"}}
-							{{> afQuickField name="off_weekdays"}}
-						</div>
-						<div class="coll spann_16">
+					<div class="coll spann_16">
+					</div>
+				</div>
+				<div class="roww">
+					<div class="coll spann_16">
+						<div class="coll spann_10">
 							{{> afQuickField name="work_time"}}
 						</div>
-					</div>
-
-					<div class="coll spann_8">
-						<div class="coll spann_16">
-							{{> afQuickField name="district_pickup"}}
+						<div class="coll spann_10">
+							{{> afQuickField name="district_pickup"}}	
 						</div>
-						<div class="coll spann_16">
+						<div class="coll spann_10">
 							{{> afQuickField name="district_overpay"}}
 						</div>
 					</div>

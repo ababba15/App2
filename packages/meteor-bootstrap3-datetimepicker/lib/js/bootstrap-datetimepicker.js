@@ -2419,14 +2419,14 @@
             selectTime: 'Select Time'
         },
         useStrict: false,
-        sideBySide: false,
+        sideBySide: true,
         daysOfWeekDisabled: false,
         calendarWeeks: false,
         viewMode: 'days',
         toolbarPlacement: 'default',
         showTodayButton: false,
         showClear: false,
-        showClose: false,
+        showClose: true,
         widgetPositioning: {
             horizontal: 'auto',
             vertical: 'auto'

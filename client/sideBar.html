@@ -2,77 +2,88 @@
     <div class="sideBar">
         <div class="sideBar_abs">
             <ul class="tabs clearfix" data-tabgroup="first-tab-group" style="padding: 0;">
-                <li><a href="#tab1" id="ta1">Шоп</a></li>
-                <li><a href="#tab2" id="ta2">Спа</a></li>
+                <li><a href="#tab1" id="ta1">Тра</a></li>
+                <li><a href="#tab2" id="ta2">Экс</a></li>
                 <li><a href="#tab3" id="ta3">Так</a></li>
-                <li><a href="#tab4" id="ta4">Экс</a></li>
-                <li><a href="#tab5" id="ta5">Тра</a></li>
-                <li><a href="#tab6" id="ta6">Виз</a></li>
+                <li><a href="#tab4" id="ta4">Виз</a></li>
+                <li><a href="#tab5" id="ta5">Шоп</a></li>
+                <li><a href="#tab6" id="ta6">Спа</a></li>
             </ul>
             <div class="all_orders">
                 <section id="first-tab-group" class="tabgroup">
                     <div id="tab1">
-                        {{#each Shopping_Orders_Index }}
-                        <div class="order">
+                        {{#each Transfer_Orders_Index }}
+                        <div class="order {{order_status}}" data-order-id='{{_id}}'>
                             {{type}}
                             <br> на {{time}},
                             <br> {{date}}
-                            <br>
+                            <br> {{#afModal class="btn btn-primary" omitFields='type' collection="Transfer_Orders" operation="update" doc=this._id }}
+                            <div class="update_class"></div>
+                            {{/afModal}}
                         </div>
                         {{/each}}
                     </div>
                     <div id="tab2">
-                        {{#each Spa_Orders_Index }}
-                        <div class="order">
+                        {{#each Tour_Orders_Index }}
+                        <div class="order {{order_status}}" data-order-id='{{_id}}'>
                             {{type}}
                             <br> на {{time}},
                             <br> {{date}}
-                            <br>
+                            <br> {{#afModal class="btn btn-primary" collection="Tour_Orders" operation="update" doc=this._id }}
+                            <div class="update_class"></div>
+                            {{/afModal}}
                         </div>
                         {{/each}}
                     </div>
                     <div id="tab3">
                         {{#each Taxi_Orders_Index }}
-                        <div class="order">
+                        <div class="order {{order_status}}" data-order-id='{{_id}}'>
                             {{type}}
                             <br> на {{time}},
                             <br> {{date}}
-                            <br>
+                            <br> {{#afModal class="btn btn-primary" collection="Taxi_Orders" operation="update" doc=this._id }}
+                            <div class="update_class"></div>
+                            {{/afModal}}
                         </div>
                         {{/each}}
                     </div>
                     <div id="tab4">
-                        {{#each Tour_Orders_Index }}
-                        <div class="order">
+                        {{#each Visa_Orders_Index }}
+                        <div class="order {{order_status}}" data-order-id='{{_id}}'>
                             {{type}}
                             <br> на {{time}},
                             <br> {{date}}
-                            <br>
+                            <br> {{#afModal class="btn btn-primary" collection="Visa_Orders" operation="update" doc=this._id }}
+                            <div class="update_class"></div>
+                            {{/afModal}}
                         </div>
                         {{/each}}
                     </div>
                     <div id="tab5">
-                        {{#each Transfer_Orders_Index }}
-                        <div class="order">
+                        {{#each Shopping_Orders_Index }}
+                        <div class="order {{order_status}}" data-order-id='{{_id}}'>
                             {{type}}
                             <br> на {{time}},
                             <br> {{date}}
-                            <br>
+                            <br> {{#afModal class="btn btn-primary" collection="Shopping_Orders" operation="update" doc=this._id }}
+                            <div class="update_class"></div>
+                            {{/afModal}}
                         </div>
                         {{/each}}
                     </div>
                     <div id="tab6">
-                        {{#each Visa_Orders_Index }}
-                        <div class="order">
+                        {{#each Spa_Orders_Index }}
+                        <div class="order {{order_status}}" data-order-id='{{_id}}'>
                             {{type}}
                             <br> на {{time}},
                             <br> {{date}}
-                            <br>
+                            <br> {{#afModal class="btn btn-primary" collection="Spa_Orders" operation="update" doc=this._id }}
+                            <div class="update_class"></div>
+                            {{/afModal}}
                         </div>
                         {{/each}}
                     </div>
                 </section>
-                {{> Order_updateModal}}
             </div>
         </div>
     </div>
@@ -93,33 +104,6 @@
         $(tabgroup).children('div').hide();
         $(target).show();
 
-    })
+    });
     </script>
-</template>
-<!-- <template name="order">
-    <div class="order" data-order-id='{{_id}}'>{{type}} <br>
-        <br> <span style <br>="font-size: 10px">{{time}}, {{date}}</span>
-    </div>
-</template> -->
-<template name="Order_updateModal">
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <div class="roww">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Добавить</button>
-                            <button type="reset" class="btn btn-default">Сбросить</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </template>

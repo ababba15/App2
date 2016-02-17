@@ -9,8 +9,7 @@
 
                 {{> afQuickField name="place_from"}}
                 {{> afQuickField name="room"}}
-                {{> afQuickField name="date"}}
-                {{> afQuickField name="time"}}
+                {{> afQuickField name="date_time"}}
                 {{> afQuickField name="additional_info"}}
             </div>
             <div class="coll spann_2">
@@ -30,13 +29,18 @@
             </div>
         </div>
         <div class="roww">
+            <div class="coll spann_6">
+                {{> afQuickField name="order_status"}}
+            </div>
+        </div>
+        <div class="roww">
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Добавить</button>
+                <button type="submit" class="btn btn-success">Отправить заказ</button>
                 <button type="reset" class="btn btn-default">Сбросить</button>
             </div>
         </div>
         {{/autoForm}}
-        <div class="roww">
+<!--         <div class="roww">
             <div class="coll spann_6">
                 <div class="qwrap">
                     {{#afModal collection="Places" operation="insert" title="Добавить новое место" prompt="Внесите данные" buttonContent="Добавить" buttonClasses="btn btn-success" }}
@@ -44,8 +48,8 @@
                     {{/afModal}}
                 </div>
             </div>
-        </div>
-    </div>
+        </div>-->
+    </div> 
 	<script>
 		$("input[name='room']").closest('div.form-group').hide();
 	</script>

@@ -308,3 +308,7 @@ Messages.allow({
     return true;
   }
 });
+
+Meteor.publish("User", function () {
+  return Meteor.users.find();
+});

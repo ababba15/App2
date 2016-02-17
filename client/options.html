@@ -4,8 +4,24 @@
 	<div class="containerr">
 		<div class="roww">
 			<div class="coll spann_8">
-				{{#autoForm id="options" type="update" collection="Options" doc=this._id resetOnSuccess=true}}
-					{{> afQuickField name="discount"}}
+			{{#if discount}}
+    		    {{#autoForm collection="Options" id="discount_options" type="update" doc=discount resetOnSuccess=true}}
+    		        {{> afQuickField name="options_discount_min"}}
+					{{> afQuickField name="options_discount_med"}}
+					{{> afQuickField name="options_discount_max"}}
+					<div class="roww">
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">Добавить</button>
+							<button type="reset" class="btn btn-default">Сбросить</button>
+						</div>
+					</div>
+    		    {{/autoForm}}
+
+    		{{else}}
+    		    {{#autoForm id="discount_options" type="insert" collection="Options" resetOnSuccess=true}}
+					{{> afQuickField name="options_discount_min"}}
+					{{> afQuickField name="options_discount_med"}}
+					{{> afQuickField name="options_discount_max"}}
 					<div class="roww">
 						<div class="form-group">
 							<button type="submit" class="btn btn-success">Добавить</button>
@@ -13,6 +29,36 @@
 						</div>
 					</div>
 				{{/autoForm}}
+    		{{/if}}
+    		</div>
+
+			<div class="coll spann_8">
+			{{#if kids}}
+    		    {{#autoForm collection="Options" id="kids_options" type="update" doc=kids resetOnSuccess=true}}
+    		        {{> afQuickField name="options_kids_weigth"}}
+					{{> afQuickField name="options_kids_height"}}
+					{{> afQuickField name="options_kids_age"}}
+					<div class="roww">
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">Добавить</button>
+							<button type="reset" class="btn btn-default">Сбросить</button>
+						</div>
+					</div>
+    		    {{/autoForm}}
+
+    		{{else}}
+    		    {{#autoForm id="kids_options" type="insert" collection="Options" resetOnSuccess=true}}
+					{{> afQuickField name="options_kids_weigth"}}
+					{{> afQuickField name="options_kids_height"}}
+					{{> afQuickField name="options_kids_age"}}
+					<div class="roww">
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">Добавить</button>
+							<button type="reset" class="btn btn-default">Сбросить</button>
+						</div>
+					</div>
+				{{/autoForm}}
+    		{{/if}}
 			</div>
 		</div>
 	</div>

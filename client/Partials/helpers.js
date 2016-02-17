@@ -1,37 +1,37 @@
-Template.layout.events({
-    'mouseover .time': function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        $('.time').parent().css('position', 'relative');
-        $('.time').datetimepicker({
-            format: 'HH:mm',
-            stepping: 5,
-            useCurrent: true,
-            locale: moment.locale('ru'),
-            widgetPositioning: {
-                horizontal: 'auto',
-                vertical: 'auto'
-            },
-        });
-    },
-    'mouseover .date': function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        $('.date').datetimepicker({
-            format: 'LL',
-            locale: moment.locale('ru'),
-        });
-    },
-    'mouseover .datetime': function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        $('.datetime').datetimepicker({
-            format: 'LLL',
-            stepping: 1,
-            locale: moment.locale('ru'),
-        });
-    },
-});
+// Template.layout.events({
+    // 'mouseover .time': function(event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     $('.time').parent().css('position', 'relative');
+    //     $('.time').datetimepicker({
+    //         format: 'HH:mm',
+    //         stepping: 5,
+    //         useCurrent: true,
+    //         locale: moment.locale('ru'),
+    //         widgetPositioning: {
+    //             horizontal: 'auto',
+    //             vertical: 'auto'
+    //         },
+    //     });
+    // },
+    // 'mouseover .date': function(event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     $('.date').datetimepicker({
+    //         format: 'LL',
+    //         locale: moment.locale('ru'),
+    //     });
+    // },
+    // 'mouseover .datetime': function(event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     $('.datetime').datetimepicker({
+    //         format: 'LLL',
+    //         stepping: 1,
+    //         locale: moment.locale('ru'),
+    //     });
+    // },
+// });
 
 AutoForm.addHooks(null, {
     formToModifier: function(modifier) {
@@ -52,51 +52,86 @@ AutoForm.addHooks(null, {
 });
 
 Template.sideBar.helpers({
-    Shopping_Orders_Index: function () {
+    Shopping_Orders_Index: function() {
         return Shopping_Orders.find({});
     },
-    Spa_Orders_Index: function () {
+    Spa_Orders_Index: function() {
         return Spa_Orders.find({});
     },
-    Taxi_Orders_Index: function () {
+    Taxi_Orders_Index: function() {
         return Taxi_Orders.find({});
     },
-    Tour_Orders_Index: function () {
+    Tour_Orders_Index: function() {
         return Tour_Orders.find({});
     },
-    Transfer_Orders_Index: function () {
+    Transfer_Orders_Index: function() {
         return Transfer_Orders.find({});
     },
-    Visa_Orders_Index: function () {
+    Visa_Orders_Index: function() {
         return Visa_Orders.find({});
     },
 });
 
 
+Template.options.helpers({
+    discount: function() {
+        return Options.findOne({}, {
+            fields: {
+                options_discount_min: true,
+                options_discount_med: true,
+                options_discount_max: true
+            }
+        })
+    },
+    kids: function() {
+        return Options.findOne({}, {
+            fields: {
+                options_kids_weigth: true,
+                options_kids_height: true,
+                options_kids_age: true
+            }
+        })
+    },
 
-// Template.Order_updateModal.helpers({
-//     curr_doc: function() {
-//         Meteor.subscribe('Orders');
-//         return Orders.findOne({
-//             _id: Order_id
-//         });
-//     }
-// });
+});
 
+AutoForm.addInputType('summer', {
+    template: "summer",
+    valueOut: this.$(".editor").val()
+});
 
-// Template.Order_updateModal.onCreated(function() {
-//     var instance = this;
-//     console.log(instance);
+Template.summer.rendered = function() {
+    Tracker.afterFlush(function() {
+        this.$(".editor").summernote({
 
-// instance.autorun(function() {
-//     var Order_id = instance.Order_id.get();
-//     console.log(Order_id);
-//     instance.subscribe("Orders", Order_id);
-// })
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['hr']],
+                ['view', ['fullscreen']]
+            ],
 
-// instance.order = function() {
-//     return Orders.findOne({
-//         _id: instance.Order_id.get()
-//     });
-// }
-// })
+        })
+
+    })
+};
+
+AutoForm.hooks({
+    TransferSchema: {
+        onSuccess: function(formType, result) {
+            if (formType == 'insert') {
+                console.log(result)
+            }
+        },
+        onError: function(formType, error) {
+            if (formType == 'insert') {
+                console.log(error)
+            }
+        },
+
+    }
+});

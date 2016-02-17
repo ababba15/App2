@@ -1,0 +1,21 @@
+<template name="allOrders">
+    <div class="placer"></div>
+    <div class="containerr">
+        <div class="roww">
+            {{#transition}} {{#each orders}}
+            <div class="order {{order_status}} animated fade" data-order-id='{{_id}}' data-toggle="context" data-target="#context-menu">
+                {{type}} на {{date_time}}
+            </div>
+            {{/each}} {{/transition}}
+        </div>
+    </div>
+    <div id="context-menu">
+        <ul class="dropdown-menu" role="menu">
+            <li><a tabindex="-1" href="">Изменить</a></li>
+            <li><a tabindex="-1" href="#">Удалить</a></li>
+        </ul>
+    </div>
+</template>
+<template name="transition">
+    {{> UI.contentBlock}}
+</template>

@@ -6,19 +6,20 @@
         <div class="add-wrapper">
             {{#autoForm id="addTransfer" type="insert" collection="Transfers" resetOnSuccess=false}}
             <div class="roww">
-                <div class="coll spann_8">
-                    <div class="coll spann_16">
-
+                <div class="coll spann_12">
                         {{> afQuickField name="provider"}}
                         {{> afQuickField name="service"}}
                         {{> afQuickField name="direction"}}
                         {{> afQuickField name="additional_info"}}
                         {{> afQuickField name="for_tourist_info"}}
                         {{> afQuickField name="website_link"}}
-                    </div>
-                    <div class="coll spann_16">
-                    </div>
+                        {{> afQuickField name="off_weekdays"}}
+                        {{> afQuickField name="district_overpay"}}
+                   
                 </div>
+                <div class="coll spann_2 invisible">
+                        <h1>1</h1>
+                    </div>
                 <div class="coll spann_8">
                     <h3 class="text-center">Цены в один конец</h3>
                     <div class="coll spann_16">
@@ -61,16 +62,7 @@
                         {{> afQuickField name="prices_two_directions.minibus_boat_minibus.price_child_net"}}
                     </div>
                 </div>
-                <div class="coll spann_8">
-                    <div class="coll spann_16 invisible">
-                        <h1>1</h1>
-                    </div>
-                    <div class="coll spann_16">
-
-                        {{> afQuickField name="off_weekdays"}}
-                        {{> afQuickField name="district_overpay"}}
-                    </div>
-                </div>
+                
             </div>
             <hr>
             <div class="form-group">
@@ -114,7 +106,9 @@
     {{> afQuickField name="provider" class="form-control"}}
     {{> afQuickField name="service" class="form-control"}}
     {{> afQuickField name="direction" class="form-control"}}
-    {{> afQuickField name="additional_info" class="form-control"}}
+    {{> afQuickField name="additional_info"}}
+    {{> afQuickField name="for_tourist_info"}}
+    {{> afQuickField name="website_link"}}
     <div class="coll spann_16">
         <h3 class="text-center">Цены в один конец</h3>
         <div class="coll spann_16">

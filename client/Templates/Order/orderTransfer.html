@@ -1,52 +1,138 @@
 <template name="orderTransfer">
-<div class="placer"></div>
+    <div class="placer"></div>
+    <div class="containerr">
+        <div class="roww">
+            <div class="coll spann_32 order_string">
+                
+                {{#if _date_time}} {{_date_time}} transfer from {{from}}, {{/if}} 
+                {{#if _place_from}} pickup from {{_place_from}} {{/if}} 
+                {{#if _room}} #{{_room}}, {{/if}} 
+                {{#if _flight}} flight - {{_flight}}, {{/if}} 
+                {{#if _place_to}} go to {{_place_to}} in {{to}}, {{/if}} 
+                {{#if _pax_one_way}} {{_pax_one_way}} pax, {{/if}} 
+                {{#if _prices_avaible}} go on {{_prices_avaible}}. {{/if}} 
+                {{#if _direction}}
+                    <br> RETURN BACK 
+                    {{#if _pax_two_ways}} {{_pax_two_ways}} pax, {{/if}} 
+                    {{#if _return_date_time}} return date - {{_return_date_time}}. {{/if}} 
+                {{/if}}
+                {{#if _order_additional}}
+                    <br>
+                    {{_order_additional}}
+                {{/if}}
+                {{#if _order_question}}
+                    <br>
+                    QUESTION: {{_order_question}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
     <div class="containerr">
         {{# autoForm id="TransferSchema" type="insert" collection="Transfer_Orders" }}
         <div class="roww">
-            <div class="coll spann_6">
-
-                {{> afQuickField name="transfer"}}
-
-                {{> afQuickField name="room"}}
-                {{> afQuickField name="date"}}
-                {{> afQuickField name="time"}}
-                {{> afQuickField name="additional_info"}}
+            <div class="coll spann_16">
+                <div class="coll spann_15">
+                    
+                    {{> afQuickField name="transfer"}} 
+                    {{> afQuickField name="place_from"}} 
+                    {{> afQuickField name="room"}} 
+                    {{> afQuickField name="flight"}} 
+                    {{> afQuickField name="place_to"}} 
+                    {{> afQuickField name="date_time"}} 
+                </div>
+                <div class="coll spann_1">
+                    <h1 class="invisible">11</h1>
+                </div>
+                <div class="coll spann_15">
+                    
+                    {{> afQuickField name="direction"}} 
+                    {{> afQuickField name="pax_one_way"}} 
+                    {{> afQuickField name="pax_two_ways"}} 
+                    {{> afQuickField name="return_date_time"}} 
+                    {{> afQuickField name="prices_avaible"}} 
+                    {{> afQuickField name="add_to_price"}}
+                </div>
+                <div class="coll spann_1">
+                    <h1 class="invisible">11</h1>
+                </div>
+                <div class="coll spann_32">
+                <hr>
+                    
+                    {{> afQuickField name="order_status"}}
+                    {{> afQuickField name="additional_info"}} 
+                    {{> afQuickField name="additional_question"}}
+                </div>
             </div>
-            <div class="coll spann_2">
-                <h1 class="invisible">11</h1>
+            <div class="coll spann_16">
+                <div class="coll spann_32">
+                    <div class="inform">
+                        <!-- <p>Трансфер из <span style="color: white">{{from}}</span> в <span style="color: white">{{to}}</span></p>
+                        <p>Организатор: <span style="color: white">{{provider}}</span></p>
+                        <p>Доп информация: <span style="color: white">{{{additional_info}}}</span></p>
+                        <p>Что сказать туристу: <span style="color: white">{{{for_tourist_info}}}</span></p>
+                        <p>Ссылка на сайт: <a target="_blank" href="{{website_link}}">жми сюда</a></p> -->
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title accordion-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Трансфер</a></h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <p>Трансфер из <span style="color: white">{{_district_from}}</span> в <span style="color: white">{{_district_to}}</span></p>
+                                        <p>Доп информация: <span style="color: white">{{{_additional_info}}}</span></p>
+                                        <p>Ссылка на сайт: <a target="_blank" href="{{_website_link}}">жми сюда</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title accordion-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Инфо для туриста</a></h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <p>Что сказать туристу: <span style="color: white">{{{_for_tourist_info}}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title accordion-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Организатор</a></h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <p>Организатор: <span style="color: white">{{_provider}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="coll spann_6">
-
-                {{> afQuickField name="pax"}}
-                {{> afQuickField name="kids"}}
-                {{> afQuickField name="price"}}
-                {{> afQuickField name="additional_question"}}
-            </div>
-            <div class="coll spann_2">
-                <h1 class="invisible">11</h1>
-            </div>
-            <div class="coll spann_6">
-            </div>
+        </div>
+        <!--         <textarea class="edit"></textarea> -->
+        <div class="roww">
         </div>
         <div class="roww">
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Добавить</button>
-                <button type="reset" class="btn btn-default">Сбросить</button>
+                <button type="button" class="btn btn-primary btn-lg">Расчитать стоимость</button>
+                <button type="submit" class="btn btn-success btn-lg">Отправить заказ</button>
+                <button type="reset" class="btn btn-default btn-lg">Сбросить</button>
             </div>
         </div>
         {{/autoForm}}
-        <!-- <div class="roww">
-            <div class="coll spann_6">
-                <div class="qwrap">
-                    {{#afModal collection="Places" operation="insert" title="Добавить новое место" prompt="Внесите данные" buttonContent="Добавить" buttonClasses="btn btn-success" }}
-                    <div class="plus_class" id="new_place_2"></div>
-                    {{/afModal}}
-                </div>
-            </div>
-        </div> -->
     </div>
-	<script>
-		$("input[name='room']").closest('div.form-group').hide();
-	</script>
-
+    <script>
+    $("input[name='room']").closest('div.form-group').hide();
+    $("input[name='flight']").closest('div.form-group').hide();
+    $("input[name='return_date_time']").closest('div.form-group').hide();
+    $("input[name='pax_two_ways']").closest('div.form-group').hide();
+    $("button[type='submit']").hide();
+    $("button[type='button']").click(function() {
+        $("button[type='submit']").show();
+    })
+    </script>
+</template>
+<template name="summer">
+    <textarea class="editor">
+    </textarea>
 </template>

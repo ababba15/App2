@@ -1,9 +1,8 @@
-// Order_id = new ReactiveVar;
+Order_id = new ReactiveVar;
 
-// Template.order.events({
-//     'click .order': function(event) {
-//         Order_id = event.currentTarget.getAttribute('data-order-id');
-
-//         $('#myModal').modal('show');
-//     }
-// })
+Template.sideBar.events({
+    'click .order': function(event) {
+        Order_id = event.currentTarget.getAttribute('data-order-id');
+        return Order_id;
+    }
+});
